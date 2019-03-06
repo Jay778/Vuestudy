@@ -1,0 +1,29 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Vue.js起步</title>
+		
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<p>作者:{{name}}</p>
+			<p>书名:{{bookname}}</p>
+			<img :src="img"/>
+			</div> 
+			<script type="text/javascript">
+				//实例化一个Vue对象
+				var app=new Vue({
+					el:'#app',
+					data:{
+					name:'菲利普',
+					bookname:'鬼作家',
+					img:"https://img3.doubanio.com/view/subject/l/public/s29980004.jpg"
+					}
+				})
+				
+			</script>
+	</body>
+</html>
