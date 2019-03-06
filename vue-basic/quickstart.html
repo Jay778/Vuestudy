@@ -8,20 +8,37 @@
 	</head>
 	<body>
 		<h2>Hello world</h2>
+		bea <div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+			<!-- 可选择菜单 -->
+			<ul class="mui-table-view">
+			  <li class="mui-table-view-cell">
+				<a href="#">1菜单1</a>
+			  </li>
+			  <li class="mui-table-view-cell">
+				<a href="#">2菜单2</a>
+			  </li>
+			</ul>
+			<!-- 取消菜单 -->
+			<ul class="mui-table-view">
+			  <li class="mui-table-view-cell">
+				<a href="#sheet1"><b>3取消</b></a>
+			  </li>
+			</ul>
+		</div>
 		
 		<div id="app">
-			<h2>{{message}}</h2>
-			<h2>{{name}}</h2>
-			<h2>{{age}}</h2>
+			<p>姓名:{{name}}</p>
+			<input type="text" v-bind:value="description" />
+			<a v-bind:href="url">{{website}}</a>
+			<img:src="avatar" />
 			</div>
 			<script type="text/javascript">
 				//实例化一个Vue对象
 				var app=new Vue({
 					el:'#app',
 					data:{
-						message:"Vue.js",
-						name:'尤雨溪',
-						age:'100'
+					name:'作者:',
+					
 					}
 				})
 				
