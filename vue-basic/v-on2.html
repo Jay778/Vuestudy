@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title>Vue.js v-on指令练习2-隐藏和显示的切换练习</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2 v-if="show">{{name}}</h2>
+	   <button type="button" v-on:click= "handleClick">隐藏/显示</button>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data:{
+				name:'软件1721',
+				show: true
+				},
+				methods: {
+					handleClick: function(){
+						//把当前show属性的值取反
+						if(this.show===true){
+							this.show=false;
+						}else{
+							this.show=true;
+						}
+					}
+					}
+				
+			})
+		</script>
+	</body>
+</html>

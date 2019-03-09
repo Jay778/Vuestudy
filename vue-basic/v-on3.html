@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title>Vue.js v-on指令练习3-年龄的加减</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{age}}</h2>
+	   <button type="button" v-on:click ="add">加1岁</button>
+	   	   <button type="button" v-on:click ="substrict(5)">减5岁</button>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data:{
+				age:30
+				},
+				methods: {
+					add:function(){
+						this.age += 1;
+					},
+					substrict:function(num){
+						this.age-=num;
+						if(num<=0){
+							alert("不够减了！");
+						}
+					}
+					}
+				
+			})
+		</script>
+	</body>
+</html>

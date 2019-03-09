@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人基本信息</title>
+		<!--通过CDN引入Vue.js-->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+				html{
+				font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
+			}
+			   h1{
+				   font-size:30px;
+				   color:#930;
+                   text-align:center;
+                }
+				
+				button{
+						display:block; 
+					    width:250px; height:30px; 
+						line-height: 40px; margin:0 auto;
+						border:none; 
+						background-color:#41b883; 
+						color:#fff; font-size:16px;
+						margin-bottom:5px;
+					   }
+					   
+				.avator{
+					text-align: center;
+				}
+				.juli{
+					margin-bottom: 30px;
+				}
+				
+				.input{
+					border: 1px #aaa solid;
+					border-radius: 4px;
+					background: 0 0;
+					text-align: left;
+					font-size: 20px;
+					width: 200px;
+					height: 30px;
+					line-height: 40px;
+					padding: 0 20px;
+				}
+				  input:focus{
+					  border-color: #549df8;
+				  }
+				 .select{
+					 width: 200px;
+					 border: 1px #aaa solid;
+					 border-radius: 4px;
+					 background: 0 0;
+					 text-align: left;
+					 font-size: 20px;
+					 height: 30px;
+					 line-height: 50px;
+					 padding: 0 20px;
+				 }
+				 .textarea{
+					 border-radius: 5px;
+				 }
+
+		</style>
+		
+   </head>
+	  <body>
+		 <div id="app">
+	       	
+		      <div class="avator ">	  
+				  <div class="head">
+					 <h1>infomation</h1>    
+                    <label class="label-name" for="job">头像：</label>
+					</div>
+					
+                       <div class="rlf-group">
+                          <img class="fl avator-img" id="js-portrait" src="img/author2.jpg" width="120" height="120">
+                       </div>
+
+			<form>
+               <div class="juli">	   
+	          <label class="label" for="username">姓 名：</label>		      
+		      <input class="input" type="text" v-model="username" name="" id="username">
+			  </div>
+		 <div class="juli">
+			 <label for="nicheng">昵 称：</label>	    
+			 <input  class="input" type="text" v-model="nicheng" name="" id="nicheng">	 
+		 </div>	  
+		<div class="juli">
+			    <label for="sex">性 别：</label>	
+			   <input  type="radio" id="male" value="男"   v-model="picked" >男		   
+			   <input type="radio" id="female" value="女" v-model="picked" >女
+		</div>
+		<div class="juli">
+			<label for="jobs">职 位：</label> 
+			<select class="select"  v-model="selected" name="job">
+				<option value="">选择一个职业</option>
+			    <option value="Java前端">Java前端</option>		
+				<option value="全栈工程师">全栈工程师</option> 			 
+			    <option value="软件测试工程师">软件测试工程师</option>		
+				<option value="学生">学生</option>			 	
+			</select>		
+		</div>
+		
+		  <div class="juli">
+			  <label  for="hobbies">爱 好：</label> 
+			    <input type="checkbox" id="reading" value="阅读" v-model="checkedNames">
+			    <label for="baidu">阅读</label>
+			    <input type="checkbox" id="singing" value="唱歌" v-model="checkedNames">
+			    <label for="google">唱歌</label>
+			    <input type="checkbox" id="dancing" value="跳舞" v-model="checkedNames">
+			    <label for="google">跳舞</label>
+		 </div>	    
+				   
+			<div class="juli">
+                   <label class="label-name" for="aboutme">个性签名：</label>
+                  <textarea class="textarea" v-model="message2" rows="3" cols="60" id="intruduce">
+				  </textarea>
+			</div>
+			
+           <button type="button" @click="commit">提交</button>
+		</form> 
+		</div>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					username:'',
+					nicheng :'',
+					picked: 'male',
+					selected: '',
+					message2:'',
+					checkedNames:[]
+				},
+				methods: {
+					commit: function() {
+						alert("姓名:"+this.username+"\n昵称：" + this.nicheng+"\n性别:"+this.picked+"\n职位:"+this.selected+"\n爱好"+this.checkedNames+"\n个性签名:"+this.message2);
+					}
+				}
+			})
+		</script>
+	</body>

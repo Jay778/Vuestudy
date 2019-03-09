@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title>Vue.js v-on指令练习4-结合图标的关注/取消关注</title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<style type="text/css">
+	.btn{
+		width: 150px;
+		height: 50px;
+		border-radius: 20px;
+		background-color:#FFFFFF;
+		border-color:#EA6F5A;
+		color:#EA6F5A;
+		border-width: 1px;
+		font-size: 20px;
+		font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+	}
+	.btn1{
+		width: 150px;
+		height: 50px;
+		border-radius: 20px;
+		background-color:#EA6F5A;
+		border-color:#EA6F5A;
+		color:#FFFFFF;
+		border-width: 1px;
+		font-size: 20px;
+		font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+	}
+	
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="like">
+				<button class="btn1" v-show="followed"  v-on:click="handlefollow" >
+					<i class="icon-heart"></i>
+					喜 欢
+					{{num}}
+				</button>
+				<button class="btn" v-show="followed===false" v-on:click="handlefollow" >
+					<i class="icon-heart-empty"></i>喜 欢
+					{{num}}
+					</button>
+				</div>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data:{
+				followed:false,
+				num:12
+				},
+				methods: {
+					handlefollow: function(followed){
+						this.followed=! this.followed;
+						if(this.followed==true){
+							this.num+=1;
+						}else{
+							this.num-=1;
+						}
+					}
+					
+					}
+					
+					
+					
+					
+				
+			})
+		</script>
+	</body>
+</html>

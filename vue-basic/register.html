@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<script>
+			window.onload = function(){
+        var images = document.getElementsByTagName('img');
+        var pos = 0;			
+        var len = images.length;
+        setInterval(function(){
+            images[pos].style.display = 'none';
+            pos = ++pos == len ? 0 : pos;
+            images[pos].style.display = 'inline';      
+        },3000);      
+    };
+		</script>
+		<style type="text/css">
+			html{
+				font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
+			}
+			
+			.left{
+				position: fixed;
+				top:0;
+				left: 0;
+				height: 100%;
+				width: 480px;
+                float: left;
+                overflow: hidden;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+			}
+			.img{
+				position: fixed;
+				top:0;
+				left: 0;
+				height: 100%;
+				width: 480px;
+				float: left;
+				overflow: hidden;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+			.top{
+			    min-width: 560px;
+                top: 0;
+                left: 0;
+                text-align: right;
+                position: relative;
+				z-index: 1;
+				}
+				
+			.top .item{
+				float: right;
+                margin: 20px 40px 0 0;
+                margin-right: 40px;
+                font-size: 16px;
+                color: rgba(0,0,0,.902);
+                padding: 10px 0 0;
+                line-height: 24px;
+			}
+			
+			.top .about{
+				margin-right: 60px;
+				opacity: .6;
+			}
+			
+			.top .email{
+				opacity:.6;
+			}
+			
+            .a{
+				outline: 0;
+				text-decoration: none;
+				color:#000;
+			
+			}
+			.container{
+				height: 100%;
+				margin-left: 480px;
+				position: relative;
+			}
+			
+			.main{
+				position: absolute;
+                padding-bottom: 10px;
+                top: 100px;
+                width: 100%;
+			}
+			
+			.main>.form{
+				position: relative;
+                margin: 0 auto;
+                width: 480px;
+			}
+			
+			.main>.form .welcome{
+				font-size: 44px;
+                margin-bottom: 20px;
+			}
+			
+			.main>.form .head{
+				font-size: 28px;
+                margin-bottom: 64px;
+                line-height: 1.2;
+                color: #333;
+			}
+			
+			.main > .form form .input-area {
+                position: relative;
+            }
+			
+			.main > .form form .input-area .input-placeholder {
+                position: absolute;
+                font-size: 20px;
+                line-height: 20px;
+                padding: 16px 20px;
+                background: #fff;
+                z-index: -1;
+                font-weight: lighter;
+                color: #aaa;
+            }
+			.main > .form form .input-area .input-outer {
+               background: 0 0;
+               margin: 24px 0 0;
+            }
+            .main > .form form .input-area.phone-area .input-outer {
+               margin: 0;
+            }
+			.main > .form form .input-area.phone-area{
+				float:right;
+			}
+			.main > .form form .input-area .input-outer input{
+			   border: 1px #aaa solid;
+               border-radius: 4px;
+               background: 0 0;
+               text-align: left;
+               font-size: 20px;
+               width: 438px;
+               height: 50px;
+               line-height: 50px;
+               padding: 0 20px;
+            }
+			 .main > .form form .input-area.phone-area .input-outer .phone{
+				 width:265px;
+				
+				 
+			 }
+			.main > .form form .input-area .input-outer input:focus{
+				border-color: #549df8;
+			}
+			.main > .form form .input-area.nation-area{
+				width: 154px;
+			}
+			.main > .form form .input-area  .input-outer select{
+				width: 150px;
+				border: 1px #aaa solid;
+				border-radius: 4px;
+				background: 0 0;
+				text-align: left;
+				font-size: 20px;
+				height: 50px;
+				line-height: 50px;
+				padding: 0 20px;
+			}
+			.main > .form form .submit {
+                border: 1px #3083ff solid;
+                border-radius: 4px;
+                background-color: #3487ff;
+                box-shadow: 0 5px 8px 0 rgba(24,95,255,.1);
+                color: #fff;
+                text-align: center;
+				font-weight: lighter;
+				background-image: linear-gradient(0deg,#398bff,#3083ff);
+				width: 478px;
+				height: 60px;
+				margin: 40px 0 8px;
+				font-size: 24px;
+
+}
+		</style>
+		<title>注册界面</title>
+	</head>
+	<body>
+		<div id="app">
+			<div id="tab" class="left">
+				<img class="img"  src="img/1.jpg" />
+				<img class="img"  src="img/2.jpg" />
+				<img class="img"  src="img/3.jpg" />
+				<img class="img"  src="img/4.jpg" />
+					
+			</div>
+			<div class="top">
+				<div class="item about">
+					<i class="icon-comments"></i>
+					<a class="a" href="#">{{about}}</a>
+				</div>
+				<div class="item email">
+					<i class="icon-envelope-alt"></i>
+					<a class="a" href="#">{{email}}</a>
+				</div>
+			</div>
+			<div class="container">
+				<div class="main">
+					<div class="form">
+						<div class="welcome">{{welcome}}</div>
+						<div class="head">{{head}}</div>
+						<form>
+							<div class="input-area">
+								<label class="input-placeholder" for="name" v-show="placeholder" v-on:click="placeholder1">{{nicheng}}</label>
+								<label class="input-placeholder" for="name" v-show="placeholder===false" v-on:click="placeholder1" ></label>
+								<div class="input-outer" >
+									<input class="name" v-model="name"/>
+									</div>
+								</div>
+							<div class="input-area">
+								<label class="input-placeholder">{{password1}}</label>
+								<div class="input-outer">
+									<input class="password" type="password" v-model="password"/>
+								    </div>			
+								</div>
+								
+							<div style="position:relative">		
+								<div class="input-area phone-area" >
+									<label class="input-placeholder">{{phone}}</label>
+									<div class="input-outer">
+										<input class="phone" v-model="phone" />
+									</div>
+								</div>
+							
+							<div class="input-area nation-area">
+								<div class="input-outer">
+									<select class="nation" v-model="selected">
+										<option value="">国家</option>
+										<option>中国</option>
+										<option>美国</option>
+										<option>意大利</option>
+										<option>泰国</option>
+										<option>俄罗斯</option>
+										<option>英国</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div>
+								<input class="submit" type="submit" @click="commit" value="注册" />
+								</div>
+						</form>
+					</div>
+				</div>
+				</div>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data:{
+					about:'关于我们',
+					email:'邮箱账号',
+					welcome:'欢迎使用JayChat',
+					head:'精彩，即刻启程',
+					nicheng:'昵称',
+					password1:'密码',
+					selected:'',
+					phone:'手机号码',
+					name:'',
+					password:'',
+					phone:'',
+					placeholder:true
+				},
+				methods: {
+					placeholder1:function(placeholder){
+						this.placeholder=! this.placeholder;
+						
+						
+					}
+					
+				}
+			})
+			
+		</script>
+	</body>
+</html>
+
