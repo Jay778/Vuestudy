@@ -22,16 +22,16 @@
 			}
 			
 			.left{
-				position: fixed;
+				position: fixed;/* 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过"left","top","right","bottom"属性进行规定。 */
 				top:0;
 				left: 0;
 				height: 100%;
 				width: 480px;
-                float: left;
-                overflow: hidden;
-                background-repeat: no-repeat;
+                float: left;/* 图像向左浮动 */
+                overflow: hidden;/* 当内容溢出元素框时,内容会被修剪，并且其余内容是不可见的 */
+                background-repeat: no-repeat;/* background-repeat:规定如何重复背景图像,no-repeat:背景图像不重复,仅显示一次 */
                 background-position: center;
-                background-size: cover;
+                background-size: cover;/* 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域 */
 			}
 			.img{
 				position: fixed;
@@ -50,7 +50,7 @@
                 top: 0;
                 left: 0;
                 text-align: right;
-                position: relative;
+                position: relative;/* 生成相对定位的元素，相对于其正常位置进行定位 */
 				z-index: 1;
 				}
 				
@@ -66,7 +66,7 @@
 			
 			.top .about{
 				margin-right: 60px;
-				opacity: .6;
+				opacity: .6;/* 不透明级别 */
 			}
 			
 			.top .email{
@@ -75,7 +75,7 @@
 			
             .a{
 				outline: 0;
-				text-decoration: none;
+				text-decoration: none;/* 不对文本进行修饰 */
 				color:#000;
 			
 			}
@@ -120,7 +120,7 @@
                 line-height: 20px;
                 padding: 16px 20px;
                 background: #fff;
-                z-index: -1;
+                z-index: -1;/* 设置元素的堆叠顺序 */
                 font-weight: lighter;
                 color: #aaa;
             }
@@ -146,9 +146,7 @@
                padding: 0 20px;
             }
 			 .main > .form form .input-area.phone-area .input-outer .phone{
-				 width:265px;
-				
-				 
+				 width:265px;			 
 			 }
 			.main > .form form .input-area .input-outer input:focus{
 				border-color: #549df8;
@@ -211,8 +209,7 @@
 						<div class="head">{{head}}</div>
 						<form>
 							<div class="input-area">
-								<label class="input-placeholder" for="name" v-show="placeholder" v-on:click="placeholder1">{{nicheng}}</label>
-								<label class="input-placeholder" for="name" v-show="placeholder===false" v-on:click="placeholder1" ></label>
+								<label class="input-placeholder" for="name">{{nicheng}}</label>
 								<div class="input-outer" >
 									<input class="name" v-model="name"/>
 									</div>
@@ -226,7 +223,7 @@
 								
 							<div style="position:relative">		
 								<div class="input-area phone-area" >
-									<label class="input-placeholder">{{phone}}</label>
+									<label class="input-placeholder">{{phone1}}</label>
 									<div class="input-outer">
 										<input class="phone" v-model="phone" />
 									</div>
@@ -265,19 +262,15 @@
 					nicheng:'昵称',
 					password1:'密码',
 					selected:'',
-					phone:'手机号码',
+					phone1:'手机号码',
 					name:'',
 					password:'',
 					phone:'',
-					placeholder:true
 				},
 				methods: {
-					placeholder1:function(placeholder){
-						this.placeholder=! this.placeholder;
-						
-						
+					commit:function(){
+                    alert("注册成功!!"+"\n昵称："+this.name+"\n国家："+this.selected+"\n手机号码："+this.phone)
 					}
-					
 				}
 			})
 			

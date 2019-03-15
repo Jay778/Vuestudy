@@ -22,13 +22,13 @@
 		<div id="app">
 			<h2>{{name}}</h2>
 			
-			<span class="followed link"v-show="handlefollow">
+			<p class="followed link"v-show="handlefollow">
 			<i class="icon-ok"></i>已关注
-			</span>
+			</p>
 			
-			<span class="cancle-followed"v-show="handlefollow===false">
+			<p class="cancle-followed"v-show="handlefollow===false">
 			<i class="icon-plus"></i>关注
-			</span>
+			</p>
 		</div>
 		<script type="text/javascript">
 			var app=new Vue({
@@ -39,7 +39,7 @@
 				},
 				methods: {
 					handlefollow:function(){
-						this.followed=this.followed;
+						this.followed=!this.followed;
 					}
 					},
 					

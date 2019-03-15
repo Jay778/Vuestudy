@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Vue.js起步</title>
+		
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.container{
+				display: flex;
+			}
+		</style>
+	</head>
+	<body>
+	
+		
+		<div id="app">
+			<div v-for="result in results">
+				<p>{{result.name}}:{{result.price}}元</p>	
+			</div>
+			<p>总价为:{{allprice}}元</p>
+			</div>
+			<script type="text/javascript">
+				var app=new Vue({
+					el:'#app',
+					data:{
+					results:[
+						{
+							name:'apple',
+							price:5
+						},
+						{
+							name:'banana',
+							price:10
+						},
+						{
+							name:'orange',
+							price:7
+						}
+					]			
+					},
+					methods:{
+				
+					},
+					computed:{
+							allprice:function(){
+							var allprice=0;
+							var len=this.results.length;
+							for(var i=0;i<len;i++){
+								allprice+=this.results[i].price;
+							}
+							return allprice;
+					}
+					}
+				})
+				
+			</script>
+	</body>
+</html>

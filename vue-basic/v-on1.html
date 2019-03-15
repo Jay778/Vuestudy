@@ -5,23 +5,25 @@
 		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<title></title>
+	
+
 	</head>
 	<body>
 		<div id="app">
-	   <button type="button" v-on:dblclick="handleClick">点我</button>
+<p v-show="show1">当点击时显示此行</p>
+<button @click="show" type="button">点击</button>
 		</div>
 		<script type="text/javascript">
 			var app=new Vue({
 				el:'#app',
 				data:{
-				name:'软件1721'
+				show1:false
 				},
-				methods: {
-					handleClick: function(){
-						alert(this.name);
+				methods:{
+					show:function(show1){
+						this.show1=true;
 					}
-					}
-				
+				}
 			})
 		</script>
 	</body>
