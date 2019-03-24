@@ -1,0 +1,80 @@
+
+view{
+	font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
+}
+.all{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin:0 auto;
+	width: 100%;
+	height:100rpx;
+	margin-bottom: 50rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.icon{
+	width: 80rpx;
+	height: 80rpx;
+	margin: 10rpx;
+	border-radius: 10rpx;
+}
+.neirong{
+	width: 100%;
+	margin-left:40rpx;
+}
+.name{
+	font-size: 33rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.p1{
+	margin-right: 15rpx;
+}
+.name1{
+	font-size: 23rpx;
+	color: #aaa;
+	margin-top: 15rpx;
+	width: 100%;
+}
+.content {
+	text-align: center;
+	height: 400rpx;
+}
+.header{	
+	width: 100%;
+	height: 130rpx;
+	background-color: #F8F8F8;
+}
+.left{
+	float: left;
+	margin-left: 11rpx;
+	margin-top: 60rpx;
+}
+.right{
+	float: right;
+	margin-right: 5rpx;
+	margin-top: 33rpx;
+}
+image{
+	width: 50rpx;
+	height: 50rpx;
+	margin: 30rpx;
+}
+.icon image {
+	width: 100rpx;
+	height: 100rpx;
+	margin: 10rpx;
+	border-radius: 10rpx;
+}
+

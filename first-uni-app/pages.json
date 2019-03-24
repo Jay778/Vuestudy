@@ -1,0 +1,68 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "主页"
+			}
+		},
+			{
+			"path": "pages/tongxunlu/tongxunlu",
+			"style": {
+				"navigationBarTitleText": "通讯录"
+			}
+		},
+			{
+			"path": "pages/faxian/1.1",
+			"style": {
+				"navigationBarTitleText": "发现"
+			}
+		},
+		{
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "我"
+			}
+		}
+	],
+	/* 配置tab页 */
+	"tabBar":{
+		"color":"#000000",
+		"selectedColor":"#2F85FC",
+		"backgroundColor":"#FFFFFF",
+		"borderStyle":"black",
+		"list":[
+			{
+				"pagePath":"pages/index/index",
+				"iconPath":"static/weixin.png",
+				"selectedIconPath":"static/weixin1.png",
+				"text":"微信"
+			},
+				{
+				"pagePath":"pages/tongxunlu/tongxunlu",
+				"iconPath":"static/tongxunlu.png",
+				"selectedIconPath":"static/tongxunlu1.png",
+				"text":"通讯录"
+			},
+				{
+				"pagePath":"pages/faxian/1.1",
+				"iconPath":"static/faxian.png",
+				"selectedIconPath":"static/faxian1.png",
+				"text":"发现"
+			},
+				{
+				"pagePath":"pages/me/me",
+				"iconPath":"static/wo.png",
+				"selectedIconPath":"static/wo1.png",
+				"text":"我"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle":"custom"
+	}
+}

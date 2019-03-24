@@ -1,0 +1,36 @@
+
+.left{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.item{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	margin-top: 80rpx;
+}
+.picture{
+	margin-left: 450rpx;
+}
+image{
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 60rpx;
+	height: 60rpx;
+	margin-left: 30rpx;
+}
+.tex{
+	margin-left: 20rpx;
+}
+
