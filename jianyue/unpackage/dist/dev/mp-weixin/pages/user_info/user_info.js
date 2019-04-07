@@ -139,6 +139,7 @@ __webpack_require__.r(__webpack_exports__);
       avatar: uni.getStorageSync('login_key').avatar,
       userId: uni.getStorageSync('login_key').userId };
 
+
   },
   onShow: function onShow() {
     var _this = this;

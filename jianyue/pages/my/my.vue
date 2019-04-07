@@ -42,8 +42,8 @@ export default {
 		var three=66;
 		var four=100;
 		return {
-			avatar:uni.getStorageSync('login_key').avatar ,
-			nickname:uni.getStorageSync('login_key').nickname,
+			avatar:'',
+			nickname:'',
 			storageData: {},
 			headers:[{
 				"shang":one,
@@ -106,7 +106,6 @@ export default {
 		});
 	},
 	methods: {
-		
 	}
 };
 </script>

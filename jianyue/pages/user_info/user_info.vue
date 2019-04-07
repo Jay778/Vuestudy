@@ -23,6 +23,7 @@
 				nickname: uni.getStorageSync('login_key').nickname,
 				avatar: uni.getStorageSync('login_key').avatar,
 				userId: uni.getStorageSync('login_key').userId
+				
 			};
 		},
 		onShow() {

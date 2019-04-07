@@ -1,22 +1,13 @@
 <template>
 	<view class="uni-flex uni-column container">
-		<input
-			class="uni-input"
-			type="number"
-			placeholder="输入手机号"
-			v-model="userDTO.mobile"
-			required="required"
-		/>
-		<input
-			class="uni-input"
-			password
-			type="text"
-			placeholder="输入密码"
-			v-model="userDTO.password"
-			required="required"
-		/>
+		<input class="uni-input" type="number" placeholder="输入手机号" v-model="userDTO.mobile" required="required"/>
+		<input class="uni-input" password type="text" placeholder="输入密码"	v-model="userDTO.password" required="required"/>
 		<button type="primary" @tap="signIn(userDTO)">登录</button>
+		
+		<navigator url="../signup/signup">用户注册</navigator>
+		
 	</view>
+	
 </template>
 
 <script>
@@ -24,22 +15,19 @@ export default {
 	data() {
 		return {
 			userDTO: {
-				mobile: '',
-				password: ''
+				mobile:'',
+				password:''
 			}
 		};
 	},
 	onLoad() {
-		uni.setNavigationBarTitle({
-			title: '登录'
-		});
+
 	},
 	methods: {
 		signIn: function(userDTO) {
 			var _this = this;
-			// console.log(userDTO.mobile + ',' + userDTO.password);
 			uni.request({
-				url: 'http://localhost:8080/api/user/sign_in',
+				url: this.apiServer + '/user/sign_in',
 				method: 'POST',
 				data: {
 					mobile: userDTO.mobile,
@@ -62,7 +50,10 @@ export default {
 						uni.showToast({
 							title: '登录成功'
 						});
-						uni.navigateBack();
+						uni.switchTab({
+							url: '../my/my'
+						});
+				
 					}
 					//登录失败，弹出各种原因
 					else {
@@ -81,7 +72,8 @@ export default {
 <style scoped>
 input {
 	height: 50px;
-	border-bottom: 1px solid #eee;
-	margin-bottom: 5px;
+	margin-bottom: 8px;
+	border: 1px solid #eee;
+	border-radius: 5px;
 }
 </style>
