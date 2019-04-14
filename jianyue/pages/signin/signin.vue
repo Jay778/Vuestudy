@@ -4,7 +4,7 @@
 		<input class="uni-input" password type="text" placeholder="输入密码"	v-model="userDTO.password" required="required"/>
 		<button type="primary" @tap="signIn(userDTO)">登录</button>
 		
-		<navigator url="../signup/signup">用户注册</navigator>
+		<navigator url="../signup/signup" class="zhuce">用户注册</navigator>
 		
 	</view>
 	

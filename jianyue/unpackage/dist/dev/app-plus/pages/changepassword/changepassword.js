@@ -1,0 +1,2 @@
+setCssToHead(["wx-input{ height: 40px; border: 1px solid #eee; border-radius: 5px; margin-bottom: 10px; }\n.",[1],"btn{ background-color: rgb(120,193,43); }\n",],undefined,{path:"./pages/changepassword/changepassword.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/changepassword/changepassword.wxml') } }));

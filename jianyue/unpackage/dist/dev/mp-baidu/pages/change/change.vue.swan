@@ -1,0 +1,1 @@
+<template name="6489dbb9"><view class="_view {{ h[ 0 ].rcl }} data-v-ac85d7d8"><input class="_input input data-v-ac85d7d8" type="text" value="{{ h[ 1 ].value }}" required="required" data-cid="{{ _c || c }}" data-hid="{{ 1 }}" bindinput="_pe"/><button class="_button btn data-v-ac85d7d8" data-cid="{{ _c || c }}" data-hid="{{ 2 }}" bindtap="_pe">确认</button></view></template>

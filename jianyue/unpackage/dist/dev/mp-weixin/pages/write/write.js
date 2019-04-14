@@ -95,7 +95,100 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  data: function data() {
+    return {
+      title: '',
+      content: '',
+      userId: uni.getStorageSync('login_key').userId,
+      imgs: [] };
+
+  },
+  methods: {
+    chooseImg: function chooseImg() {
+      var _this = this;
+      uni.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album'],
+        success: function success(res) {
+          console.log(JSON.stringify(res.tempFilePaths));
+          uni.uploadFile({
+            url: _this.apiServer + '/avatar/upload',
+            filePath: res.tempFilePaths[0],
+            name: 'file',
+            success: function success(uploadFileRes) {
+              //图片上传成功，回显图片地址
+              console.log(uploadFileRes.data);
+              //将图片地址加入imgs数组
+              _this.imgs.push(uploadFileRes.data);
+              //将图片地址拼接HTML标签，加入文章内容
+              _this.content += '<img src="' + uploadFileRes.data + '" width="100%"/>';
+            } });
+
+        } });
+
+    },
+    // 发布文章
+    postArticle: function postArticle() {var _this2 = this;
+      var _this = this;
+      uni.request({
+        url: this.apiServer + '/article/add',
+        method: 'POST',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        data: {
+          uId: this.userId,
+          title: this.title,
+          content: '<div>' + this.content + '</div>' },
+
+        success: function success(res) {
+          if (res.data.code === 0) {
+            //获得发布文章成功返回的文章id
+            var aId = res.data.data;
+            console.log(aId);
+            uni.showToast({
+              title: '发布成功' });
+
+            //将文章id和文章对应的图片地址数组传到后台，存入数据库
+            uni.request({
+              url: _this2.apiServer + '/img/add',
+              method: 'POST',
+              header: { 'content-type': 'application/x-www-form-urlencoded' },
+              data: {
+                aId: aId,
+                imgs: JSON.stringify(_this.imgs) //序列化imgs数组
+              },
+              success: function success(res) {
+                if (res.data.code === 0) {
+                  console.log('文章图片地址已写入数据库');
+                }
+              } });
+
+            uni.switchTab({
+              url: '../index/index' });
+
+          }
+        } });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 
@@ -114,7 +207,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "view",
+    { staticClass: "container" },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.title,
+            expression: "title"
+          }
+        ],
+        attrs: {
+          type: "text",
+          placeholder: "请输入标题",
+          eventid: "3f07fcf9-0"
+        },
+        domProps: { value: _vm.title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.title = $event.target.value
+          }
+        }
+      }),
+      _c(
+        "button",
+        {
+          staticClass: "add-btn",
+          attrs: { eventid: "3f07fcf9-1" },
+          on: { tap: _vm.chooseImg }
+        },
+        [_vm._v("+图片")]
+      ),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.content,
+            expression: "content"
+          }
+        ],
+        staticClass: "content",
+        attrs: { placeholder: "输入内容", eventid: "3f07fcf9-2" },
+        domProps: { value: _vm.content },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.content = $event.target.value
+          }
+        }
+      }),
+      _c("text", [_vm._v("预览")]),
+      _c(
+        "view",
+        { staticClass: "grace-text" },
+        [
+          _c("rich-text", {
+            attrs: { nodes: _vm.content, bindtap: "tap", mpcomid: "3f07fcf9-0" }
+          })
+        ],
+        1
+      ),
+      _c(
+        "button",
+        {
+          staticClass: "green-btn",
+          attrs: { eventid: "3f07fcf9-3" },
+          on: { tap: _vm.postArticle }
+        },
+        [_vm._v("发布文章")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

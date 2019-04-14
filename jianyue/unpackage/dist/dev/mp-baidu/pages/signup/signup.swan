@@ -1,0 +1,2 @@
+<import src="./signup.vue.swan" />
+    <template is="7f9176b9" data="{{{ ...$root['0'], $root }}}"/>

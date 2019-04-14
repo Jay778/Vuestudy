@@ -1,0 +1,1 @@
+<template name="3e002c4f"><view s-if="{{ h[ 0 ]._if }}" class="_view grace-loading grace-ellipsis {{ h[ 0 ].rcl }}"><view s-if="{{ h[ 1 ]._if }}" class="_view grace-loading-icon"></view><text class="_text">{{ h[ 3 ].t }}</text></view></template>

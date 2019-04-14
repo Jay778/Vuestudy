@@ -1,0 +1,2 @@
+setCssToHead(["wx-input.",[1],"data-v-1f613fd4 { height: 50px; margin-bottom: 8px; border: 1px solid #eee; border-radius: 5px; }\n",],undefined,{path:"./pages/signin/signin.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/signin/signin.wxml') } }));

@@ -27,7 +27,9 @@
 		},
 		{
 			"path": "pages/write/write",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "写文章"
+			}
 		},
 		{
 			"path": "pages/info/info",
@@ -60,7 +62,26 @@
 				"style":{
 					"navigationBarTitleText": "新密码"
 					}
+			},
+			{
+				"path":"pages/changepassword/changepassword",
+				"style":{
+					"navigationBarTitleText": "修改密码"
+					}
+			},
+			{
+				"path":"pages/article_detail/article_detail",
+				"style":{
+					"navigationBarTitleText": "文章详情"
+					}
+			},
+			{
+				"path":"pages/article_detail/myarticle",
+				"style":{
+					"navigationBarTitleText": "我的文章"
+					}
 			}
+			
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -89,6 +110,7 @@
 				"iconPath": "static/nav3.png",
 				"selectedIconPath": "static/nav3-a.png"
 			}
+			
 		]
 	}
 }

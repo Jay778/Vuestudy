@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"green-btn{ background-color:rgb(26,173,25); color: #FFFFFF; }\n.",[1],"uni-input{ height: 40px; border: 1px solid #eee; border-radius: 5px; margin-bottom: 10px; }\n",],undefined,{path:"./pages/password/password.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/password/password.wxml') } }));

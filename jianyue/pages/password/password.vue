@@ -58,4 +58,11 @@ export default {
 		background-color:rgb(26,173,25);
 		color: #FFFFFF;
 	}
+	.uni-input{
+	height: 40px;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	margin-bottom: 10px;
+		
+	}
 </style>

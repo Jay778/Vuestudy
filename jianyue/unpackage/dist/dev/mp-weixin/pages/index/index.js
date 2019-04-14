@@ -113,7 +113,41 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -126,13 +160,55 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 {
   data: function data() {
     return {
-      title: 'Hello' };
+      articles: [] };
 
   },
   onLoad: function onLoad() {
-
+    this.getArticles();
   },
-  methods: {} };exports.default = _default;
+  onShow: function onShow() {},
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.getArticles();
+  },
+  methods: {
+    getArticles: function getArticles() {
+      var _this = this;
+      uni.request({
+        url: this.apiServer + '/article/list',
+        method: 'GET',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function success(res) {
+          _this.articles = res.data.data;
+        },
+        complete: function complete() {
+          uni.stopPullDownRefresh();
+        } });
+
+    },
+    gotoDetail: function gotoDetail(aId) {
+      uni.navigateTo({
+        url: '../article_detail/article_detail?aId=' + aId });
+
+    },
+    handleContent: function handleContent(content) {
+      content = content.replace(/(\n)/g, "");
+      content = content.replace(/(\t)/g, "");
+      content = content.replace(/(\r)/g, "");
+      content = content.replace(/<\/?[^>]*>/g, "");
+      content = content.replace(/\s*/g, "");
+      return content.substring(0, 50);
+    },
+    handleTime: function handleTime(date) {
+      var d = new Date(date);
+      var year = d.getFullYear();
+      var month = d.getMonth() + 1;
+      var day = d.getDate() < 10 ? '0' + d.getDate() : '' + d.getDate();
+      var hour = d.getHours() < 10 ? '0' + d.getHours() : '' + d.getHours();
+      var minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes();
+      var seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : '' + d.getSeconds();
+      return year + '/' + month + '/' + day + ' ' + hour + ':' + minutes + ':' + seconds;
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 
@@ -162,12 +238,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("view", { staticClass: "content" }, [
-    _c("image", { staticClass: "logo", attrs: { src: "../../static/1a.jpg" } }),
-    _c("view", [
-      _c("text", { staticClass: "title" }, [_vm._v(_vm._s(_vm.title))])
-    ])
-  ])
+  return _c(
+    "view",
+    { staticClass: "container" },
+    [
+      _vm._l(_vm.articles, function(article, index) {
+        return _c("view", { key: index, staticClass: "article" }, [
+          _c("view", { staticClass: "title" }, [
+            _c(
+              "text",
+              {
+                staticClass: "article-title",
+                attrs: { eventid: "3a27dc9f-0-" + index },
+                on: {
+                  tap: function($event) {
+                    _vm.gotoDetail(article.id)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(article.title))]
+            )
+          ]),
+          article.imgs.length >= 3
+            ? _c("view", { staticClass: "one" }, [
+                _c(
+                  "view",
+                  { staticClass: "thumbnail-box" },
+                  _vm._l(article.imgs, function(item, index1) {
+                    return _c(
+                      "view",
+                      { key: index1, staticClass: "thumbnail-item" },
+                      [
+                        _c("image", {
+                          staticClass: "img",
+                          attrs: { src: item.imgUrl }
+                        })
+                      ]
+                    )
+                  })
+                )
+              ])
+            : article.imgs.length >= 1
+            ? _c("view", { staticClass: "two" }, [
+                _c("view", { staticClass: "text-img-box" }, [
+                  _c("view", { staticClass: "left" }, [
+                    _c("text", [
+                      _vm._v(_vm._s(_vm.handleContent(article.content)))
+                    ])
+                  ]),
+                  _c("view", { staticClass: "right" }, [
+                    _c("image", {
+                      staticClass: "img",
+                      attrs: {
+                        src: article.imgs[article.imgs.length - 1].imgUrl
+                      }
+                    })
+                  ])
+                ])
+              ])
+            : _c("view", { staticClass: "text-box" }, [
+                _c("text", [_vm._v(_vm._s(article.title))])
+              ]),
+          _c("view", { staticClass: "article-info" }, [
+            _c("image", {
+              staticClass: "avatar1",
+              attrs: { src: article.avatar }
+            }),
+            _c("text", { staticClass: "info-text" }, [
+              _vm._v(_vm._s(article.nickname))
+            ]),
+            _c("text", { staticClass: "info-text" }, [
+              _vm._v(_vm._s(_vm.handleTime(article.createTime)))
+            ])
+          ])
+        ])
+      }),
+      _c(
+        "navigator",
+        { attrs: { url: "../write/write", "hover-class": "navigator-hover" } },
+        [
+          _c("button", { staticClass: "circle-btn" }, [
+            _c("text", { staticClass: "icon-text" }, [_vm._v("+")])
+          ])
+        ],
+        1
+      )
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

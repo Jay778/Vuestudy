@@ -8,25 +8,48 @@
 					class="avatar"
 					v-if="!storageData.login">
 					</image>
-				<image :src="avatar" mode="scaleToFill" class="avatar" v-if="storageData.login"></image>
+				<navigator url="../signin/signin" v-if="!storageData.login">点击登录</navigator>
 			</view>
 			<view class="info-box">
-				<navigator url="../signin/signin" v-if="!storageData.login">点击登录</navigator>
+				<view class="left">
+				<image :src="avatar" mode="scaleToFill" class="avatar" v-if="storageData.login"></image>
+				</view>
+				<view class="right">
 				<text v-if="storageData.login" class="text">{{nickname}}</text>
+				<view class="right1">
+				<text v-if="storageData.login" class="text">关注 11</text>
 				<navigator v-if="storageData.login" url="../setting/setting" class="setting">个人设置</navigator>
+				</view>
+				</view>
 			</view>
 		</view>
-		<view class="header" v-if="storageData.login">
-			<view v-for="(header,index) in headers" :key="index" class="header1">
-			<navigator >{{header.shang}}</navigator>
-			<navigator>{{header.xia}}</navigator>
+		<view class="head1" v-if="storageData.login">
+			<view class="one">
+			<image src="../../static/钻石.png" v-if="storageData.login" mode="scaleToFill" class="img_h1" ></image>
+			<text v-if="storageData.login" class="text_one">简阅钻: 0</text>
 			</view>
+			</hr>
+			<view class="two">
+			<view class="two1" v-for="(head,index) in heads" :key="index" v-if="storageData.login" >
+			<navigator url="../article_detail/myarticle">
+			<view class="shang">
+			<image v-bind:src="head.shang" mode="scaleToFill" v-if="storageData.login" class="img_h"></image>
+			</view>
+			<view class="xia">
+			<text class="text1">{{head.xia}}</text>
+			</view>
+			</navigator>
+			</view>
+		</view>
+		</view>
+		<view class="photo" v-if="storageData.login">
+			<img class="img"  src="../../static/4.jpg" />
 		</view>
 	
 	<view class="content" v-if="storageData.login">
 		<view v-for="(content,index) in contents" :key="index" class="content1">
 			<view class="content2">
-		<navigator>{{content.wenzhang}}</navigator>	
+		<navigator >{{content.wenzhang}}</navigator>	
 		</view>
 		</view>
 	</view>
@@ -62,17 +85,41 @@ export default {
 			}
 			],
 			contents:[{
-				"wenzhang":'第一篇文章'
+				"wenzhang":'简阅会员'
 			},
 			{
-				"wenzhang":'第二篇文章'
+				"wenzhang":'简阅活动'
 			},
 			{
-				"wenzhang":'第三篇文章'
+				"wenzhang":'简东西'
 			},
 			{
-				"wenzhang":'第四篇文章'
-			}]
+				"wenzhang":'我的钱包'
+			},
+			{
+				"wenzhang":'我的专题/文集',
+			},
+			{
+				"wenzhang":'浏览历史'	
+			}
+			],
+			heads:[
+				{
+				"shang":require('../../static/文章.png'),
+				"xia":'我的文章'
+			},{
+				"shang":require('../../static/书架.png'),
+				"xia":'我的书架'
+			},
+			{
+				"shang":require('../../static/收藏.png'),
+				"xia":'赞和收藏'
+			},
+			{
+				"shang":require('../../static/任务.png'),
+				"xia":'有奖任务'
+			}
+			]
 			
 		};
 	},
@@ -111,10 +158,28 @@ export default {
 </script>
 
 <style scoped>
+	.left{
+		display: flex;
+		left: 5%;
+		margin-top: 13px;
+	}
+	.right{
+	margin-top: 13px;
+	}
+	.right1{
+		display: flex;
+	}
+	.content1{	
+		display: flex;
+		border-bottom: 1px solid #8F8F94;
+		margin-bottom: 20px;
+		align-content: center;
+	}
 	.content2{
 		display: flex;
 		align-content: center;
-		height: 30px;
+		height: 40px;
+		margin-left: 15px;
 	}
 	.container{
 		height: 100%;
@@ -124,6 +189,13 @@ export default {
 		width: 100%;
 		margin-bottom: 20px;
 		margin-top: 40px;
+	}
+	.head1{
+		width: 100%;
+		margin-bottom: 15px;
+		margin-top: 15px;
+		box-shadow:0px  0px  8px 0px #d0d0d0;
+		height: 160px;
 	}
 	.header1{
 		width: 70%;
@@ -135,37 +207,77 @@ export default {
 	}
 	.content{
 	margin-top: 20px;
-	}
-	.content1{	
-		display: flex;
-		border-bottom: 1px solid #8F8F94;
-		margin-bottom: 20px;
-		align-content: center;
+	box-shadow:0px  0px  8px 0px #d0d0d0;
 	}
 	.top {
 	height: 70px;
 	margin-top: 15px;
 	margin-bottom: 20px;
-}
+	}
 .avatar-box{
 	text-align: center;
 	margin-bottom: 15px;
-}
+	}
 .info-box{
 	display: flex;
-	justify-content: center;
-}
+	}
+	.photo{
+		margin-top: 15px;
+		margin-bottom: 11px;
+	}
 .text{
 	display: flex;
-	margin-right: 25px;
-	text-align: center;
-	margin-bottom: 15px;
+	margin-bottom: 12px;
+	margin-left: 20px;
+	}
+.text_one{
+	
+}
+.text1{
+	font-size: 13px;
 }
 .setting{
 	display: flex;
-	text-align: center;
-	margin-left: 10px;
-     color:rgb(26, 173, 25);
+    color:rgb(26, 173, 25);
+	margin-left: 20px;
 }
-
+.one{
+	display: flex;
+	height: 50px;
+	width: 100%;
+	align-content: center;
+	border-bottom: 2px solid #EEEEEE;
+}
+.two{
+	display: flex;
+	align-content: center;
+}
+.img{
+	width: 100%;
+	height: 85px;
+}
+.img_h{
+	width: 30px;
+	height: 30px;
+	margin-left:15px;
+	line-height: 30px;
+}
+.img_h1{
+	width: 30px;
+	height: 30px;
+	margin-left:15px;
+	line-height: 30px;
+	margin-top: 6px;
+}
+.two1{
+	margin-left: 12px;
+	margin-top: 18px;
+}
+.text_one{
+	margin-left: 7px;
+	margin-top: 10px;
+}
+view{
+	font-weight: 700;
+}
 </style>

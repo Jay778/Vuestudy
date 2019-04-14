@@ -1,6 +1,6 @@
 <template>
 	<view>
-	<input type="text" v-model="changenickname" required="required" value=""/>
+	<input class="input" type="text" v-model="changenickname" required="required" value=""/>
 	<button @tap="changeNickname(changenickname)" class="btn">确认</button>
 	</view>
 </template>
@@ -31,7 +31,13 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	.input{
+		height: 40px;
+		border: 1px solid #eee;
+		border-radius: 5px;
+		margin-bottom: 10px;
+	}
 	.btn{
 		background-color: rgb(120,193,43);
 	}

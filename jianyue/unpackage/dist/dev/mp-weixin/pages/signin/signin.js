@@ -279,9 +279,11 @@ var render = function() {
         },
         [_vm._v("登录")]
       ),
-      _c("navigator", { attrs: { url: "../signup/signup" } }, [
-        _vm._v("用户注册")
-      ])
+      _c(
+        "navigator",
+        { staticClass: "zhuce", attrs: { url: "../signup/signup" } },
+        [_vm._v("用户注册")]
+      )
     ],
     1
   )

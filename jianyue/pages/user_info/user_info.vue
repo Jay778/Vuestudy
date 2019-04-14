@@ -11,7 +11,9 @@
 				<view class="left">头像</view>
 				<view class="right"><image :src="avatar" class="avatar" @tap="showActionSheet"></image></view>
 			</view>
-			<view class="list-item list-item-heigher"><view class="left">修改密码</view></view>
+			<view class="list-item list-item-heigher"><view class="left">
+			<navigator url="../changepassword/changepassword">修改密码</navigator>
+			</view></view>
 		</view>
 	</view>
 </template>
@@ -37,6 +39,7 @@
 					console.log(res.data.data.avatar+'————————————');
 					_this.avatar = res.data.data.avatar;
 					_this.nickname = res.data.data.nickname;
+					_this.password=res.data.data.password;
 				}
 			}
 		});

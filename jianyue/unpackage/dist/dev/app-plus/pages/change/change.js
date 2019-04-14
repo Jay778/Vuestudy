@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"input.",[1],"data-v-ac85d7d8{ height: 40px; border: 1px solid #eee; border-radius: 5px; margin-bottom: 10px; }\n.",[1],"btn.",[1],"data-v-ac85d7d8{ background-color: rgb(120,193,43); }\n",],undefined,{path:"./pages/change/change.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/change/change.wxml') } }));

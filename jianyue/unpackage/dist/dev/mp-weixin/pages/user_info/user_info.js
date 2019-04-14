@@ -132,6 +132,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 {
   data: function data() {
     return {
@@ -152,6 +154,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(res.data.data.avatar + '————————————');
           _this.avatar = res.data.data.avatar;
           _this.nickname = res.data.data.nickname;
+          _this.password = res.data.data.password;
         }
       } });
 
@@ -275,20 +278,24 @@ var render = function() {
           })
         ])
       ]),
-      _vm._m(0)
+      _c("view", { staticClass: "list-item list-item-heigher" }, [
+        _c(
+          "view",
+          { staticClass: "left" },
+          [
+            _c(
+              "navigator",
+              { attrs: { url: "../changepassword/changepassword" } },
+              [_vm._v("修改密码")]
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("view", { staticClass: "list-item list-item-heigher" }, [
-      _c("view", { staticClass: "left" }, [_vm._v("修改密码")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
