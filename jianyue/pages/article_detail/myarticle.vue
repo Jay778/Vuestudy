@@ -45,7 +45,7 @@
 export default {
 		data() {
 			return {
-				articles: []
+				articles: [],
 			}
 		},
 		onLoad: function() {
@@ -107,7 +107,7 @@ export default {
 	
 	}
 	.info-text{
-		margin-left: 10px;
+		
 		margin-top: 10px;
 	}
 	.info-text1{

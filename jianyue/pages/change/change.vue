@@ -4,7 +4,6 @@
 	<button @tap="changeNickname(changenickname)" class="btn">确认</button>
 	</view>
 </template>
-
 <script>
 	export default{
 		data(){

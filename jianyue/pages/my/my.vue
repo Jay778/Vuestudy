@@ -17,7 +17,7 @@
 				<view class="right">
 				<text v-if="storageData.login" class="text">{{nickname}}</text>
 				<view class="right1">
-				<text v-if="storageData.login" class="text">关注 11</text>
+				<text v-if="storageData.login" class="text">关注 0</text>
 				<navigator v-if="storageData.login" url="../setting/setting" class="setting">个人设置</navigator>
 				</view>
 				</view>

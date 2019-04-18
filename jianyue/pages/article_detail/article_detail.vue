@@ -20,9 +20,11 @@
 		<view class="comment-item" v-for="(comment, index) in comments" :key="index">
 			<view class="left"><image :src="comment.avatar" class="avatar_small"></image></view>
 			<view class="right">
-				<text>{{ comment.nickname }}</text>
+				
+				<text class="right1">{{ comment.nickname }}</text>
 				<text>{{ comment.content }}</text>
-				<view>
+				
+				<view class="right1">
 					<text style="margin-right: 10px;">{{ comments.length - index }}楼</text>
 					<text>{{handleTime(comment.commentTime)}}</text>
 				</view>
@@ -166,6 +168,10 @@ export default {
 </script>
 
 <style >
+	.grace-text{
+		border-bottom: 4px solid #EEEEEE;
+		margin-bottom: 10px;
+	}
 	.info-text{
 		margin-left: 10px;
 	}
@@ -188,14 +194,18 @@ export default {
 .right{
 	flex: 1 1 30%;
 }
+.right1{
+	margin-top: 20px;
+}
 .avatar_small{
-	width:30px;
-	height: 30px;
+	width:45px;
+	height: 45px;
 	border-radius: 50%;
+	margin-top: 20px;
 }
 .content {
 	margin-bottom: 10px;
-	margin-top: 10px;
+	margin-top: 20px;
 	padding: 5px;
 	border-bottom: 1px solid #eee;
 }
@@ -215,16 +225,16 @@ export default {
 }
 .comment-item {
 	display: flex;
-	align-items: center;
 	border-bottom: 1px solid #eee;
 	margin-bottom: 10px;
 	padding: 5px;
+	height:100px;
 }
 .comment-item .left {
-	flex: 1 1 15%;
+	flex: 1 1 17%;
 }
 .comment-item .right {
-	flex: 1 1 85%;
+	flex: 1 1 75%;
 	display: flex;
 	flex-direction: column;
 }
@@ -241,6 +251,10 @@ export default {
 	text-align: center;
 	padding-bottom: 20px;
 	margin-right: 0px;
+}
+.green-btn{
+	background-color: rgb(65,168,99);
+	color: #FFFFFF;
 }
 .cancel{
 	background-color: rgb(26,160,52);

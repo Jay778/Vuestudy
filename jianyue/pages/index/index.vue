@@ -1,6 +1,27 @@
 <template>
 	<view class="container">
-		<view class="article" v-for="(article,index) in articles" :key="index">
+		<view class="top">
+			<view class="top-left">
+				<view class="top-left-box">
+					<view class="box" v-show="!recommend"><navigator @tap="clickshow()">推荐</navigator></view>
+					<view class="box navigator" v-show="recommend"><navigator>推荐</navigator></view>
+				</view>
+				<view class="top-left-box">
+					<view class="box" v-show="!special"><navigator @tap="clickshow2()">专题</navigator></view>
+					<view class="box navigator" v-show="special"><navigator>专题</navigator></view>
+				</view>
+				<view class="top-left-box">
+					<view class="box" v-show="!serialize"><navigator @tap="clickshow3()">连载</navigator></view>
+					<view class="box navigator" v-show="serialize"><navigator>连载</navigator></view>
+				</view>
+			</view>
+			<view class="top-right">
+				<view class="search">
+					<navigator url="../search/search"><image src="../../static/sousuo.png"></image></navigator>
+				</view>
+			</view>
+		</view>
+		<view class="article" v-for="(article,index) in articles" :key="index" v-show="recommend">
 		<!-- 标题 -->
 		<view class="title">
             <text class="article-title" @tap="gotoDetail(article.id)">{{article.title}}</text>
@@ -36,7 +57,7 @@
 			</view>
         </view>
 		<navigator url="../write/write" hover-class="navigator-hover">
-			<button class="circle-btn"><text class="icon-text">+</text></button>
+			<button class="circle-btn"><text class="icon-text">＋</text></button>
 		</navigator>
 	</view>
 </template>
@@ -48,17 +69,37 @@
 			return {
 				articles: [],
 				comments:[],
-				userId: uni.getStorageSync('login_key').userId
+				userId: uni.getStorageSync('login_key').userId,
+				recommend: true,
+				special: false,
+				serialize: false
 			}
 		},
 		onLoad: function() {
 			this.getArticles();
+			
 		},
 		onShow: function() {},
 		onPullDownRefresh: function(){
 			this.getArticles();
+			
 		},
 		methods: {	
+			clickshow: function() {
+				this.recommend = true;
+				this.special = false;
+				this.serialize = false;
+			},
+			clickshow2: function() {
+				this.recommend = false;
+				this.special = true;
+				this.serialize = false;
+			},
+			clickshow3: function() {
+				this.recommend = false;
+				this.special = false;
+				this.serialize = true;
+			},
 			getArticles: function() {
 			var _this= this;
 			uni.request({
@@ -72,24 +113,6 @@
 					uni.stopPullDownRefresh();
 				}
 				});
-			},
-			getArticles1:function(){
-					var _this = this;
-					uni.request({
-					url: this.apiServer + '/article/' + this.article.aId,
-					method: 'GET',
-					header: { 'content-type': 'application/x-www-form-urlencoded' },
-					data: {
-						userId: this.userId
-					},
-					success: res => {
-					this.article.aId = res.data.data.article.id;
-					_this.comments = res.data.data.comments;
-					},
-			complete: function() {
-				uni.stopPullDownRefresh();
-			}
-			});
 			},
 			gotoDetail:function(aId){
 				uni.navigateTo({
@@ -154,8 +177,41 @@
 
 	}
     .icon-text {
-		font-size: 20pt;
-		color: #fff;
+		font-size: 15pt;
+		color: #FFFFFF;
+		font-weight: 700;
+	}
+	.top {
+		width: 100%;
+		height: 35px;
+		background: #ffffff;
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid #aaa;
+		/* border: 1px solid #00B26A; */
+	}
+	.top-left {
+		margin-left: 3px;
+		display: flex;
+		width: 80%;
+		/* border: 1px solid #007AFF; */
+	}
+	.top-left-box {
+		height: 100%;
+		display: flex;
+		flex: 1 1 30%;
+	}
+	.top-right {
+		margin-right: 10px;
+		/* border: 1px solid #007AFF; */
+	}
+	.navigator {
+		color: #fd572b;
+		border-bottom: 2px solid #fd572b;
+	}
+	.search image {
+		width: 32px;
+		height: 32px;
 	}
 	.article{
 		border: 1px solid rgb(238,238,238);
