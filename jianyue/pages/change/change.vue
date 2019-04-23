@@ -17,7 +17,7 @@
 		changeNickname:function(changenickname){
 			var _this = this;
 			uni.request({
-			url: 'http://localhost:8080/api/user/nickname?id='+uni.getStorageSync('login_key').userId,
+			url: this.apiServer+'/user/nickname?id='+uni.getStorageSync('login_key').userId,
 			method:'put',
 			data:changenickname,
 			header: { 'content-type':'application/json' },

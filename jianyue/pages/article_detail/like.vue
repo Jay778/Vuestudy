@@ -1,10 +1,10 @@
 <template>
 	<view class="container">
-		<view class="article" v-for="(article,index) in articles" :key="index" v-if="articles.length">
+		<view class="article" v-for="(article,index) in articles" :key="index">
 		<uni-swipe-action v-on:click="deletArticles(article.id)" :options="options">	
 		<!-- 标题 -->
 		<view class="title">
-	        <text class="article-title" @tap="gotoDetail(article.id)">{{article.title}}</text>
+		    <text class="article-title" @tap="gotoDetail(article.toId)">{{article.title}}</text>
 			</view>
 			<!-- 大于等于三张图片的显示方式 -->
 			<view class="one" v-if="article.imgs.length >=3">
@@ -27,65 +27,66 @@
 			<!-- 没有图片的显示方式 -->
 			<view class="text-box" v-else>
 				<text>{{article.title}}</text>
-			</view>
-			<!-- 文章作者等信息 -->
-			<view class="article-info">
-				<image :src="article.avatar" class="avatar1"></image>
-				<text class="info-text">{{article.nickname}}</text>
-				<text class="info-text1">{{handleTime(article.createTime)}}</text>
-				<text class="info-text">评论</text>
-			</view>
+			</view>	
 			</uni-swipe-action>
-	    </view>
+		</view>
 	</view>
 </template>
 
 <script>
-import uniSwipeAction from "@/components/uni-swipe-action/uni-swipe-action.vue";
-export default {
-	components: {
-        uniSwipeAction
-    },
+	import uniSwipeAction from "@/components/uni-swipe-action/uni-swipe-action.vue";
+	export default{
+		components:{
+			uniSwipeAction
+		},
 		data() {
 			return {
 				options:[{
-                text: '删除',
-                style: {
-                    backgroundColor: '#dd524d'
-                }
-            }],
-			articles: []
-			
+		        text: '删除',
+		        style: {
+		            backgroundColor: '#dd524d'
+		        }
+		    }],
+			articles: [],
+			article:{
+				toId:0
+			}
 			}
 		},
 		onLoad: function() {
-			this.getArticles();
+		this.getArticles();
 		},
-		onShow: function() {},
+		onShow: function() {this.getArticle();
+		},
 		onPullDownRefresh: function(){
 			this.getArticles();
 			this.deletArticles()
 		},
-		methods: {	
-			getArticles: function() {
-			var _this= this;
-			uni.request({
-				url: this.apiServer + '/article/user?userId='+uni.getStorageSync('login_key').userId,
-				method: 'GET',
-				header: { 'content-type': 'application/x-www-form-urlencoded'},
-				success: res => {
-					_this.articles = res.data.data;
-				},
-				complete: function(){
-					uni.stopPullDownRefresh();
-				}
-				});
+		methods:{
+			getArticles:function(){
+				var _this= this;
+				uni.request({
+					url: this.apiServer + '/collect/list?myUId='+uni.getStorageSync('login_key').userId,
+					method: 'GET',
+					header: { 'content-type': 'application/x-www-form-urlencoded'},
+					success: res => {
+						_this.articles = res.data.data;
+						_this.article.toId=res.data.data.article.toId;
+					},
+					complete: function(){
+						uni.stopPullDownRefresh();
+					}
+					});
 			},
-			deletArticles:function(id){
+			deletArticles:function(){
 				var _this=this;
 				uni.request({
-						method: 'DELETE',
-						url: 'http://localhost:8080/api/article/user?id='+id,
+						method: 'POST',
+						url:this.apiServer + '/collect/cancel',
+						data: {
+							myUId: this.userId,
+							toId: this.article.toId
+						},
 						header: { 'content-type': 'application/x-www-form-urlencoded'},
 						success: res => {
 							uni.startPullDownRefresh();
@@ -95,32 +96,31 @@ export default {
 						}
 					})
 				},
-			
-			gotoDetail:function(aId){
+			gotoDetail:function(toId){
 				uni.navigateTo({
-					url: '../article_detail/article_detail?aId=' + aId
+					url: '../article_detail/article_detail?aId=' + toId
 				});
 			},
-			handleContent:function(content){
-				content = content.replace(/(\n)/g, "");
-				content = content.replace(/(\t)/g, "");
-				content = content.replace(/(\r)/g, "");
-				content = content.replace(/<\/?[^>]*>/g, "");
-				content = content.replace(/\s*/g, "");
-				return content.substring(0,50);
-		},
-			handleTime: function(date) {
-				var d = new Date(date);
-				var year = d.getFullYear();
-				var month = d.getMonth() + 1;
-				var day = d.getDate() < 10 ? '0' + d.getDate() : '' + d.getDate();
-				var hour = d.getHours() < 10 ? '0' + d.getHours() : '' + d.getHours();
-				var minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes();
-				var seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : '' + d.getSeconds();
-				return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes;
+				handleContent:function(content){
+					content = content.replace(/(\n)/g, "");
+					content = content.replace(/(\t)/g, "");
+					content = content.replace(/(\r)/g, "");
+					content = content.replace(/<\/?[^>]*>/g, "");
+					content = content.replace(/\s*/g, "");
+					return content.substring(0,50);
 			},
+				handleTime: function(date) {
+					var d = new Date(date);
+					var year = d.getFullYear();
+					var month = d.getMonth() + 1;
+					var day = d.getDate() < 10 ? '0' + d.getDate() : '' + d.getDate();
+					var hour = d.getHours() < 10 ? '0' + d.getHours() : '' + d.getHours();
+					var minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes();
+					var seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : '' + d.getSeconds();
+					return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes;
+				}
+		}
 	}
-	};
 </script>
 
 <style>

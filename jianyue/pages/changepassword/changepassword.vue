@@ -4,7 +4,6 @@
 		<button @tap="changePassword(changepassword)" class="btn">确认</button>
 	</view>
 </template>
-
 <script>
 	export default{
 		data(){
@@ -18,7 +17,7 @@
 		changePassword:function(changepassword){
 			var _this = this;
 			uni.request({
-			url: 'http://localhost:8080/api/user/password?id='+uni.getStorageSync('login_key').userId,
+			url: this.apiServer+'/user/password?id='+uni.getStorageSync('login_key').userId,
 			method:'put',
 			data:changepassword,
 			header: { 'content-type':'application/json' },

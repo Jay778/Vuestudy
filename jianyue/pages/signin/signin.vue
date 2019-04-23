@@ -1,11 +1,49 @@
 <template>
 	<view class="uni-flex uni-column container">
-		<input class="uni-input" type="number" placeholder="输入手机号" v-model="userDTO.mobile" required="required"/>
-		<input class="uni-input" password type="text" placeholder="输入密码"	v-model="userDTO.password" required="required"/>
-		<button type="primary" @tap="signIn(userDTO)">登录</button>
-		
-		<navigator url="../signup/signup" class="zhuce">用户注册</navigator>
-		
+		<view class="header">
+		<h2>帐号密码登录</h2>
+		</view>
+		<view class="content">
+		<input class="uni-input" type="number" placeholder="请输入手机号/邮箱" v-model="userDTO.mobile" required="required"/>
+		<input class="uni-input" password type="text" placeholder="请输入密码" v-model="userDTO.password" required="required"/>
+		</view>
+		<view class="btn">
+		<button type="primary" @tap="signIn(userDTO)" class="btn1">登录</button>
+		</view>
+		<view class="register">
+		<navigator url="../signup/signup" class="zhuce">手机号快捷登录</navigator>
+		<text class="fenge">|</text>
+		<navigator class="zhuce">登录遇到问题</navigator>
+		</view>
+		<view class="foot">
+			<view class="top">
+				<text class="top1">———社交帐号直接登录———</text>
+			</view>
+			<view class="content1">
+				<view class="weixin">
+					<image src="../../static/微信.png"></image>
+					<text class="kuai1">微信</text>
+				</view>
+				<view class="kuai">
+					<image src="../../static/qq.png"></image>
+					<text class="kuai1">QQ</text>
+				</view>
+				<view class="kuai">
+					<image src="../../static/微博.png"></image>
+					<text class="kuai1">微博</text>
+				</view>
+				<view class="kuai">
+					<image src="../../static/其他.png"> </image>
+					<text class="kuai1">其他</text>
+				</view>
+			</view>
+			<view class="end">
+				<text class="end1">登录代表您已经同意</text>
+				<navigator class="end2">用户协议</navigator>
+				<text class="end1">和</text>
+				<navigator class="end2">隐私政策</navigator>
+			</view>
+		</view>
 	</view>
 	
 </template>
@@ -21,7 +59,6 @@ export default {
 		};
 	},
 	onLoad() {
-
 	},
 	methods: {
 		signIn: function(userDTO) {
@@ -70,10 +107,97 @@ export default {
 </script>
 
 <style scoped>
+.container{
+	height: 100%;
+}
 input {
 	height: 50px;
 	margin-bottom: 8px;
-	border: 1px solid #eee;
+	margin-left: 30px;
 	border-radius: 5px;
+}
+.uni-input{
+	font-size: 18px;
+}
+.header{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 60px;
+	margin-top: 50px;
+	
+}
+.content{
+	margin-bottom: 30px;
+}
+h2{
+	font-size:25px;
+	font-weight: 500;
+}
+.btn{
+	margin-bottom: 30px;
+}
+.btn1{
+	border-radius: 20px;
+	background-color: rgb(255,102,81);
+	width: 90%;
+}
+.register{
+	display: flex;
+	justify-content: center;
+	margin-bottom:80px;
+}
+.zhuce{
+	color: rgb(92,114,158);
+	font-size: 17px;
+}
+.fenge{
+	margin-left: 5px;
+	margin-right:5px;
+	color: #B5B5B5;
+	font-size: 17px;
+}
+.top{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 35px;
+}
+.top1{
+	color: #b5b5b5;
+	font-size: 16px;
+}
+.content1{
+	display: flex;
+	justify-content:center;
+	margin-bottom:35px;
+}
+.kuai{
+	flex: 1 1 15%;
+}
+.weixin{
+	flex: 1 1 15%;
+	margin-left: 20px;
+}
+image{
+	width: 26px;
+	height:27px;
+	vertical-align:middle;
+	margin-right: 5px;
+}
+.kuai1{
+	vertical-align:middle;
+	font-size: 17px;
+}
+.end{
+	display: flex;
+	justify-content: center;
+}
+.end1{
+	color: #B5B5B5;
+	font-size: 16px;
+}
+.end2{
+	color: #B5B5B5;
+	font-size: 16px;
+	border-bottom: 1px solid #B5B5B5;
 }
 </style>

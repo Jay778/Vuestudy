@@ -4,9 +4,9 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "文章",
+				"navigationStyle":"custom",
 				//允许下拉刷新
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh":true
 			}
 		},
 		{
@@ -18,7 +18,7 @@
 		{
 			"path": "pages/my/my",
 			"style": {	
-				"navigationBarTitleText": "我的"
+			  "navigationStyle":"custom"  
 			}
 		},
 		{
@@ -72,16 +72,23 @@
 			{
 				"path":"pages/article_detail/article_detail",
 				"style":{
-					"navigationBarTitleText": "文章详情"
+				  "navigationBarBackgroundColor": "#FFFFFF"
 					}
 			},
 			{
 				"path":"pages/article_detail/myarticle",
 				"style":{
-					"navigationBarTitleText": "我的文章"
+					"navigationBarTitleText": "我的文章",
+						"enablePullDownRefresh":true
+					}
+			},
+			{
+				"path":"pages/article_detail/like",
+				"style":{
+					"navigationBarTitleText": "收藏的文章",
+						"enablePullDownRefresh":true
 					}
 			}
-			
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

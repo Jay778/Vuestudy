@@ -61,7 +61,7 @@
 </template>
 
 <script>
-	import graceMaskView from "../../graceUI/components/graceMaskView.vue";
+import graceMaskView from "../../graceUI/components/graceMaskView.vue";
 export default{
 	data(){
 		return{
@@ -80,7 +80,6 @@ export default{
 	onShow: function() {
 		var _this = this;
 		const loginKey = uni.getStorageSync('login_key');
-
 		if (loginKey) {
 			this.storageData = {
 				login: loginKey.login,
@@ -104,7 +103,7 @@ export default{
 				method: 'GET',
 				header: { 'content-type': 'application/x-www-form-urlencoded' },
 				data: {
-					fromUId: this.storageData.userId
+					fromUId:this.storageData.userId
 				},
 				success: res => {
 					_this.follows = res.data.data;
@@ -192,16 +191,17 @@ export default{
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
+		vertical-align: middle;
 	}
 	.text{
 		margin-left: 20px;
-		
+		vertical-align: middle;
 	}
 .list{
 	margin-top: 20px;
 }
 .list-item{
-	margin-bottom: 40px;
+	margin-bottom: 15px;
     height: 70px;
 	
 }

@@ -31,7 +31,7 @@
 		onShow() {
 		var _this = this;
 		uni.request({
-			url: 'http://localhost:8080/api/user/' + uni.getStorageSync('login_key').userId,
+			url: this.apiServer+'/user/' + uni.getStorageSync('login_key').userId,
 			method: 'GET',
 			header: { 'content-type': 'application/json' },
 			success: res => {

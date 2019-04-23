@@ -1,58 +1,136 @@
 <template>
 	<view class="container">
 		<view class="top">
-			<view class="avatar-box">
-				<image
-					src="../../static/default.png"
-					mode="scaleToFill"
-					class="avatar"
-					v-if="!storageData.login">
-					</image>
-				<navigator url="../signin/signin" v-if="!storageData.login">点击登录</navigator>
+		<view class="top_left">
+			<image src="../../static/扫码%20.png" class="left_img"></image>
+		</view>
+		<view class="top_right">
+			<image src="../../static/mine_icon_night.png" class="right_img"></image>
+			<text class="right_text">夜间</text>
+		</view>
+		</view>
+			<view class="avatar-box" v-if="!storageData.login">
+				<view class="left">
+				<image src="../../static/default.png" mode="scaleToFill" class="avatar" v-if="!storageData.login"></image>
+				</view>
+				<view class="right">
+				<navigator url="../signin/signin" v-if="!storageData.login" class="right_text1">点击登录</navigator>
+				<view class="right1">
+				<text v-if="!storageData.login" class="right1_text">立即赢简阅钻福利</text>
+				</view>
+				</view>
 			</view>
-			<view class="info-box">
+			<view class="info-box" v-if="storageData.login">
 				<view class="left">
 				<image :src="avatar" mode="scaleToFill" class="avatar" v-if="storageData.login"></image>
 				</view>
 				<view class="right">
-				<text v-if="storageData.login" class="text">{{nickname}}</text>
+				<text v-if="storageData.login" class="right_text1">{{nickname}}</text>
 				<view class="right1">
-				<text v-if="storageData.login" class="text">关注 0</text>
+				<text v-if="storageData.login" class="right1_text">关注</text>
 				<navigator v-if="storageData.login" url="../setting/setting" class="setting">个人设置</navigator>
 				</view>
 				</view>
 			</view>
-		</view>
-		<view class="head1" v-if="storageData.login">
+		<view class="head1">
 			<view class="one">
-			<image src="../../static/钻石.png" v-if="storageData.login" mode="scaleToFill" class="img_h1" ></image>
-			<text v-if="storageData.login" class="text_one">简阅钻: 0</text>
+			<view>
+			<image src="../../static/mine_icon_jewel.png" mode="scaleToFill" class="img_h1" ></image>
+			<text  class="text_one">简阅钻: 0</text>
 			</view>
-			</hr>
+			<view class="one_right">
+			<text class="one_text">查看</text>
+			<image src="../../static/箭头.png" class="one_img"></image>
+			</view>
+			</view>
 			<view class="two">
-			<view class="two1" v-for="(head,index) in heads" :key="index" v-if="storageData.login" >
-			<navigator url="../article_detail/myarticle">
-			<view class="shang">
-			<image v-bind:src="head.shang" mode="scaleToFill" v-if="storageData.login" class="img_h"></image>
+			<view class="kuai">
+				<view class="kuai_img">
+					<image src="../../static/mine_icon_article.png" class="kuai_img1"></image>
+				</view>
+				<view class="kuai_text">
+				<navigator url="../article_detail/myarticle"><text class="kuai_text1">我的文章</text></navigator>
+				</view>
+				</view>
+				<view class="kuai">
+				<view class="kuai_img">
+					<image src="../../static/mine_icon_bookshelf.png" class="kuai_img1"></image>
+				</view>
+				<view class="kuai_text">
+					<text class="kuai_text1">我的书架</text>
+				</view>
+				</view>
+				<view class="kuai">
+				<view class="kuai_img">
+					<image src="../../static/mine_icon_like.png" class="kuai_img1"></image>
+				</view>
+				<navigator url="../article_detail/like">
+				<view class="kuai_text">
+					<text class="kuai_text1">赞和收藏</text>
+				</view>
+				</navigator>
+				</view>
+				<view class="kuai">
+				<view class="kuai_img">
+					<image src="../../static/mine_icon_mission.png" class="kuai_img1"></image>
+				</view>
+				<view class="kuai_text">
+					<text class="kuai_text1">有奖任务</text>
+				</view>
+				</view>
+				</view>
+		</view>
+		<view class="photo">
+			<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000"  class="carousel">
+			<swiper-item>
+			<image src="../../static/lun1.jpg" class="photo_img"></image>
+			</swiper-item>
+			<swiper-item>
+			<image src="../../static/lun2.jpg" class="photo_img"></image>
+			</swiper-item>
+			<swiper-item>
+			<image src="../../static/lun3.jpg" class="photo_img"></image>
+			</swiper-item>
+			<swiper-item>
+			<image src="../../static/lun4.jpg" class="photo_img"></image>
+			</swiper-item>
+			</swiper>
+		</view>
+		<view class="content">
+			<view class="content_small">
+				<text class="small_text">简阅会员</text>
+				<view class="small_right">
+				<text class="right_text2">限时赠简阅钻</text>
+				<image src="../../static/箭头.png" class="small_img"></image>
+				</view>
 			</view>
-			<view class="xia">
-			<text class="text1">{{head.xia}}</text>
+			<view class="content_small">
+				<text class="small_text">简阅活动</text>
+				<view class="small_right">
+				<text class="right_text2">万元奖金等你</text>
+				<image src="../../static/箭头.png" class="small_img"></image>
+				</view>
 			</view>
-			</navigator>
+			<view class="content_small">
+				<text class="small_text">简东西</text>
+				<view class="small_right">
+				<text class="right_text2">简阅人都爱买</text>
+				<image src="../../static/箭头.png" class="small_img"></image>
+				</view>
+			</view>
+			<view class="content_small">
+				<text class="small_text">我的钱包</text>
+				<image src="../../static/箭头.png" class="small_img1"></image>
+			</view>
+			<view class="content_small">
+				<text class="small_text">我的专题/文集</text>
+				<image src="../../static/箭头.png" class="small_img1"></image>
+			</view>
+			<view class="content_small">
+				<text class="small_text">浏览历史</text>
+				<image src="../../static/箭头.png" class="small_img1"></image>
 			</view>
 		</view>
-		</view>
-		<view class="photo" v-if="storageData.login">
-			<img class="img"  src="../../static/4.jpg" />
-		</view>
-	
-	<view class="content" v-if="storageData.login">
-		<view v-for="(content,index) in contents" :key="index" class="content1">
-			<view class="content2">
-		<navigator >{{content.wenzhang}}</navigator>	
-		</view>
-		</view>
-	</view>
 	</view>
 </template>
 
@@ -157,17 +235,169 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+	.info-box{
+	display: flex;
+	}
+	.avatar-box{
+		display: flex;
+	}
+	.top{
+		display: flex;
+		justify-content: space-between;
+		margin-top: 15px;
+	}
+	.left_img{
+		width:25px;
+		height:25px;
+	}
+	.top_right{
+		vertical-align:middle;
+	}
+	.right_img{
+		width: 25px;
+		height: 25px;
+		margin-right: 8px;
+		vertical-align:middle;
+	}
+	.right_text{
+		color: #B5B5B5;
+		font-size: 15px;
+		vertical-align: middle;
+	}	
 	.left{
 		display: flex;
 		left: 5%;
-		margin-top: 13px;
+		margin-top: 11px;
 	}
 	.right{
 	margin-top: 13px;
 	}
 	.right1{
+	  display: flex;
+	  margin-left:10px;
+	}
+	.right_text1{
 		display: flex;
+		margin-bottom: 12px;
+		margin-left:10px;
+	}
+	.right1_text{
+		font-size: 15px;
+		color: rgb(158,158,158);
+	}
+	.setting{
+	display: flex;
+	color:rgb(26, 173, 25);
+	margin-left: 20px;
+	font-size: 15px;
+	}
+	.head1{
+		width: 100%;
+		margin-bottom: 15px;
+		margin-top: 15px;
+		box-shadow:0px  0px  6px 0px #d0d0d0;
+		height: 155px;
+	}
+	.one{
+		display: flex;
+		height: 54px;
+		width: 93%;
+		border-bottom: 1px solid rgb(213,213,213);
+		margin-left: 12px;
+		justify-content: space-between;
+	}
+	.one_img{
+		width: 15px;
+		height: 12px;
+		vertical-align: middle;
+	}
+	.one_text{
+		color: #B5B5B5;
+		font-size: 15px;
+		vertical-align: middle;
+		line-height: 54px;
+		margin-right: 5px;
+	}
+	.img_h1{
+		width: 33px;
+		height: 33px;
+		margin-left:8px;
+		vertical-align: middle;
+	}
+	.text_one{
+	line-height: 54px;
+	font-size: 15px;
+	vertical-align: middle;
+	}
+	.two{
+		display: flex;
+		justify-content: center;
+	}
+	.kuai{
+		flex: 1 1 20%;
+	}
+	.kuai_img1{
+		width: 27px;
+		height: 27px;
+		margin-top: 15px;
+		margin-left: 28px;
+	}
+	.kuai_text1{
+		font-size: 14px;
+		margin-left: 15px;
+	}
+	.photo{
+		margin-top: 15px;
+		margin-bottom: 11px;
+		border-radius: 5px;
+		}
+	.carousel{
+		width: 100%;
+		height: 65px;
+		border-radius: 5px;
+	}
+	.photo_img{
+		width: 100%;
+		height: 65px;
+		border-radius: 5px;
+	}
+	.content{
+	margin-top: 20px;
+	
+	}
+	.content_small{
+	display: flex;
+	border-bottom: 1px solid rgb(213,213,213);
+	width: 100%;
+	height: 50px;
+	margin-left: 8px;
+	justify-content: space-between;
+	}
+	.small_text{
+		font-size: 15px;
+		line-height: 50px;
+		vertical-align: middle;
+	}
+	.small_img{	
+		width: 15px;
+		height: 12px;
+		vertical-align: middle;
+		margin-right: 5px;
+	}
+	.small_img1{
+		width: 15px;
+		height: 12px;
+		vertical-align: middle;
+		margin-top: 18px;
+		margin-right: 5px;
+	}
+	.right_text2{
+		color: #B5B5B5;
+		font-size: 13px;
+		vertical-align: middle;
+		line-height: 50px;
+		margin-right: 3px;
 	}
 	.content1{	
 		display: flex;
@@ -190,13 +420,6 @@ export default {
 		margin-bottom: 20px;
 		margin-top: 40px;
 	}
-	.head1{
-		width: 100%;
-		margin-bottom: 15px;
-		margin-top: 15px;
-		box-shadow:0px  0px  8px 0px #d0d0d0;
-		height: 160px;
-	}
 	.header1{
 		width: 70%;
 		margin-right: 10px;
@@ -205,69 +428,15 @@ export default {
 		border-right: 1px solid #8F8F94;
 		margin-top: 30px;
 	}
-	.content{
-	margin-top: 20px;
-	box-shadow:0px  0px  8px 0px #d0d0d0;
-	}
-	.top {
-	height: 70px;
-	margin-top: 15px;
-	margin-bottom: 20px;
-	}
-.avatar-box{
-	text-align: center;
-	margin-bottom: 15px;
-	}
-.info-box{
-	display: flex;
-	}
-	.photo{
-		margin-top: 15px;
-		margin-bottom: 11px;
-	}
-.text{
-	display: flex;
-	margin-bottom: 12px;
-	margin-left: 20px;
-	}
-.text_one{
-	
-}
-.text1{
+	.text1{
 	font-size: 13px;
-}
-.setting{
-	display: flex;
-    color:rgb(26, 173, 25);
-	margin-left: 20px;
-}
-.one{
-	display: flex;
-	height: 50px;
-	width: 100%;
-	align-content: center;
-	border-bottom: 2px solid #EEEEEE;
-}
-.two{
-	display: flex;
-	align-content: center;
-}
-.img{
-	width: 100%;
-	height: 85px;
-}
+	}
+
 .img_h{
 	width: 30px;
 	height: 30px;
 	margin-left:15px;
 	line-height: 30px;
-}
-.img_h1{
-	width: 30px;
-	height: 30px;
-	margin-left:15px;
-	line-height: 30px;
-	margin-top: 6px;
 }
 .two1{
 	margin-left: 12px;
@@ -276,8 +445,5 @@ export default {
 .text_one{
 	margin-left: 7px;
 	margin-top: 10px;
-}
-view{
-	font-weight: 700;
 }
 </style>

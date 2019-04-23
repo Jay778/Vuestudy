@@ -19,8 +19,8 @@
 			<image src="../../static/tupian.png" class="img"></image>
 		</navigator>
 		<!-- 文章内容输入的多行文本域，绑定content变量 -->
-		<view class="content1" v-show="show">
-		<textarea placeholder="输入内容" v-model="content" class="content" />
+		<view class="uni-textarea" v-show="show">	
+		<textarea placeholder="输入内容" v-model="content" style="width:95%;margin-left:10px;margin-right:10px;" maxlength="5000"/>
 		</view>
 	</view>
 </template>
@@ -114,7 +114,7 @@
 	}
 </script>
 
-<style >
+<style scoped>
 	.img{
 		width: 30px;
 		height: 30px;
@@ -154,6 +154,6 @@
 		margin-bottom: 15px;
 	}
 	.content1{
-		height: 200px;
+			
 	}
 </style>

@@ -4,29 +4,42 @@
 		<text class="article-title1" >{{article.title}}</text>
 		</view>
 		<view class="article-info">
+			<view class="shang">
 			<view class="left">
 			<image :src="article.avatar" class="avatar_small"></image>
-			<text>{{ article.nickname }}</text>
-			<text class="info-text">{{ handleTime(article.createTime) }}</text>
+			<text class="left_text">{{article.nickname}}</text>	
 			</view>
 			<!-- 登录用户和文章作者不是同一个人，就显示关注或取消关注按钮 -->
 			<view class="right">
-			<button v-if="userId != article.uId && !followed" class="green-btn follow-btn cancel" @tap="follow">关注</button>
-			<button v-if="userId != article.uId && followed" class="green-btn follow-btn cancel" @tap="cancelFollow">取消</button>
+			<button v-if="userId != article.uId && !followed" class="right_bn" @tap="follow">关注</button>
+			<button v-if="userId != article.uId && followed" class="right_bn" @tap="cancelFollow">取消</button>
+			</view>
+			</view>
+			<view class="xia">
+			<text class="xia_text">字数3610 • 阅读 4132</text>
+			<text class="xia_text">{{handleTime(article.createTime)}}</text>
 			</view>
 		</view>
-		<view class="grace-text" style="margin-top: 10px;"><rich-text :nodes="article.content" bindtap="tap"></rich-text></view>
+		<view class="comment_text" style="margin-top: 10px;"><rich-text :nodes="article.content" bindtap="tap"></rich-text></view>
+		
+		<view class="foot">
+			<view class="foot_s">
+				<text>小礼物走一走，来简阅关注我</text>
+			</view>
+			<view class="foot_x">
+				<button v-if="!collected" class="foot_b" @tap="collect">收藏文章</button>
+				<button v-if="collected" class="foot_b" @tap="cancelCollect">已收藏</button>
+			</view>
+		</view>
 		<text class="info-text">评论:{{ comments.length }}</text>
 		<view class="comment-item" v-for="(comment, index) in comments" :key="index">
 			<view class="left"><image :src="comment.avatar" class="avatar_small"></image></view>
 			<view class="right">
-				
 				<text class="right1">{{ comment.nickname }}</text>
 				<text>{{ comment.content }}</text>
-				
-				<view class="right1">
-					<text style="margin-right: 10px;">{{ comments.length - index }}楼</text>
-					<text>{{handleTime(comment.commentTime)}}</text>
+				<view class="right2">
+					<text style="margin-right: 10px;" class="right1_text">{{ comments.length - index }}楼</text>
+					<text class="right1_text">{{handleTime(comment.commentTime)}}</text>	
 				</view>
 			</view>
 		</view>
@@ -51,7 +64,8 @@ export default {
 			comments: [],
 			content: '',
 			userId: uni.getStorageSync('login_key').userId,
-			followed: false
+			followed: false,
+			collected: false
 		};
 	},
 	onLoad: function(option) {
@@ -68,7 +82,7 @@ export default {
 		getArticle: function() {
 			var _this = this;
 			uni.request({
-				url: this.apiServer + '/article/' + this.article.aId,
+				url: this.apiServer +'/article/' + this.article.aId,
 				method: 'GET',
 				header: { 'content-type': 'application/x-www-form-urlencoded' },
 				data: {
@@ -86,6 +100,9 @@ export default {
 					_this.comments = res.data.data.comments;
 					if (res.data.data.followed === '已关注') {
 						_this.followed = true;
+					}
+					if(res.data.data.collected === '已收藏'){
+						_this.collected = true;
 					}
 				},
 				complete: function() {
@@ -106,7 +123,7 @@ export default {
 		send: function() {
 			console.log('评论人编号：' + this.userId + ',文章编号：' + this.article.aId + '，评论内容：' + this.content);
 			uni.request({
-				url: this.apiServer + '/comment/add',
+				url: this.apiServer+'/comment/add',
 				method: 'POST',
 				header: { 'content-type': 'application/x-www-form-urlencoded' },
 				data: {
@@ -117,7 +134,7 @@ export default {
 				success: res => {
 					if (res.data.code === 0) {
 						uni.showToast({
-							title: '评论成功'
+						title:'评论成功'
 						});
 						this.getArticle();
 						this.content = '';
@@ -162,52 +179,170 @@ export default {
 					}
 				}
 			});
+		},
+		collect:function(){
+			uni.request({
+				url:this.apiServer+ '/collect/add',
+				method:'POST',
+				header:{'content-type': 'application/x-www-form-urlencoded'},
+				data:{
+					myUId:this.userId,
+					toId:this.article.aId
+				},
+				success: res => {
+					if (res.data.code === 0) {
+						uni.showToast({
+							title: '收藏成功'
+						});
+						this.collected =true;
+					}
+				}
+			});
+		},
+		cancelCollect:function(){
+			uni.request({
+				url:this.apiServer+"/collect/cancel",
+				method:'POST',
+				header:{'content-type': 'application/x-www-form-urlencoded' },
+				data:{
+					myUId:this.userId,
+					toId:this.article.aId
+				},
+				success: res => {
+					if (res.data.code === 0) {
+						uni.showToast({
+							title: '已取消收藏'
+						});
+						this.collected = false
+					}
+				}
+			});
 		}
 	}
 };
 </script>
 
 <style >
+	.header{
+		display: flex;
+		justify-content: center;
+		margin-bottom: 12px;
+	}
+	.avatar_small{
+		width:50px;
+		height:50px;
+		border-radius:50%;
+		margin-right: 10px;
+		vertical-align: middle;
+	}
+	.left_text{
+		vertical-align: middle;
+	}
+	.right_bn{
+		background-color: #00B26A;
+		color: #fff;
+		width: 80px;
+		height: 30px;
+		line-height: 30px;
+		margin-top: 10px;
+	}
+	.header_img{
+		width: 15px;
+		height:15px
+	}
 	.grace-text{
 		border-bottom: 4px solid #EEEEEE;
 		margin-bottom: 10px;
 	}
 	.info-text{
-		margin-left: 10px;
+		margin-right: 10px;
+		font-size: 12px;
+		color: #B5B5B5;
+		margin-top: 6.5px;
 	}
-.article-title1{
-	font-weight: 700;
-	font-size: 20px;
-}
-.article-title{
-	width: 100%;
-	height: 40px;
-	margin-top: 20px;
-}
-.article-info{
-	display: flex;
+	.article-title{
+		margin-top: 20px;
+	}
+	.article-title1{
+		font-weight: 700;
+		font-size: 26px;
+		justify-content: center;
+	}
+	.article-info{
 	margin-top: 7px;
-}
+	}
+	.shang{
+		margin-top: 15px;
+		display: flex;
+		justify-content: space-between;
+		height: 70px;
+	}
+	.xia{
+		display: flex;
+		justify-content: space-between;
+		
+	}
+	.xia_text{
+		font-size:14px;
+		color: #B5B5B5;
+	}
+	.info-text{
+		margin-left: 10px;
+		font-size: 14px;
+		color:#B5B5B5;
+	}
+	
 .left{
 	flex: 1 1 70%;
 }
 .right{
 	flex: 1 1 30%;
 }
-.right1{
-	margin-top: 20px;
+.right1{	
+	margin-bottom:8px ;
 }
-.avatar_small{
-	width:45px;
-	height: 45px;
-	border-radius: 50%;
-	margin-top: 20px;
+.right2{
+	margin-top: 15px;
+	margin-bottom: 4px;
+}
+.right1_text{
+	font-size: 16px;
+	color: rgb(136,136,136);
+
 }
 .content {
 	margin-bottom: 10px;
 	margin-top: 20px;
 	padding: 5px;
 	border-bottom: 1px solid #eee;
+}
+.comment_text{
+	border-bottom: 1px solid rgb(213,213,213);
+}
+.foot{
+	margin-top: 15px;
+	margin-bottom: 20px;
+	border-bottom: 10px solid rgb(244,244,244);
+}
+.foot_s{
+	display: flex;
+	justify-content:center;
+	font-size: 14px;
+	margin-bottom: 12px;
+	
+}
+.foot_x{
+	display: flex;
+	justify-content: center;
+}
+.foot_b{
+	width: 90px;
+	height: 36px;
+	font-size: 14px;
+	background-color: rgb(255,102,81);
+	color: #FFFFFF;
+	line-height: 36px;
+	margin-bottom: 10px;
 }
 .img-list {
 	display: flex;
@@ -226,12 +361,12 @@ export default {
 .comment-item {
 	display: flex;
 	border-bottom: 1px solid #eee;
-	margin-bottom: 10px;
+	margin-bottom: px;
 	padding: 5px;
-	height:100px;
+	
 }
 .comment-item .left {
-	flex: 1 1 17%;
+	flex: 1 1 10%;
 }
 .comment-item .right {
 	flex: 1 1 75%;
@@ -252,10 +387,7 @@ export default {
 	padding-bottom: 20px;
 	margin-right: 0px;
 }
-.green-btn{
-	background-color: rgb(65,168,99);
-	color: #FFFFFF;
-}
+
 .cancel{
 	background-color: rgb(26,160,52);
 	color: #FFFFFF;
